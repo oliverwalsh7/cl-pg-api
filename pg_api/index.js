@@ -7,18 +7,16 @@ app.use(express.json()); // req => body
 //ROUTES//
 
 // get all ssn
-app.get("/linktopia", async(req, res) => {
+app.get("/linktopia_db/linktopia/", async(req, res) => {
   try {
-    const { ssn } = res.body;
-    const fetchSSN = await pool.query("SELECT ssn FROM linktopia ")
+    const fetchSSN = await pool.query("SELECT * FROM linktopia ")
     res.json(fetchSSN.rows);
   } catch (err) {
     console.error(err.message)
   }
 })
-// get a ssn
 
-const port = 3000;
-app.listen(3000, () => {
-  console.log("SERVER RUNNING AT PORT " + port );
+const port = 5000;
+app.listen(port, () => {
+  console.log("SERVER RUNNING AT PORT " + port);
 })
